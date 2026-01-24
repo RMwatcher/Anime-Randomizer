@@ -46,9 +46,23 @@
                                         </li>
                                         <li>
                                             Studio(s):
+                                            <ul>
+                                                <% list.data.studios.forEach(studio=> { %>
+                                                    <li>
+                                                        <%= studio.name %>
+                                                    </li>
+                                                    <% }); %>
+                                            </ul>
                                         </li>
                                         <li>
                                             Genres:
+                                            <ul>
+                                                <% list.data.genres.forEach(genre=> { %>
+                                                    <li>
+                                                        <%= genre.name %>
+                                                    </li>
+                                                    <% }); %>
+                                            </ul>
                                         </li>
                                     </ul>
                                     <h3>Synopsis:</h3>
