@@ -1,5 +1,60 @@
 <%- include("partials/header.ejs") %>
 
     <body>
-        <main></main>
+        <main>
+            <h1>Anime Randomizer</h1>
+            <% if (list && list.data && (list.data.url===undefined || list.data.url===null)) { %>
+                <p>No url is available</p>
+                <% } else if (list && list.data && list.data.url) { %>
+                    <p><a href="<%= list.data.url %>" target="_blank" rel="noopener noreferrer">Go to website to learn
+                            more.</a></p>
+                    <% } %>
+
+                        <h2>
+                            <% if(list.data.title_english===null || list.data.title_english===undefined) { %>
+                                <%= list.data.title %>
+                                    <% } else { %>
+                                        <%= list.data.title_english %>
+                                            <% } %>
+                        </h2>
+
+                        <h3>
+                            <% if(list.data.title_japanese !==undefined && list.data.title_japanese !==null) { %>
+                                <%= list.data.title_japanese %>
+                                    <% } %>
+                        </h3>
+
+                        <% if(list.data.images && list.data.images.jpg && list.data.images.jpg.image_url) { %>
+                            <img src="<%= list.data.images.jpg.image_url %>" alt="cover for a random anime title">
+                            <% } else { %>
+                                <p>No image available</p>
+                                <% } %>
+
+                                    <h3>Information:</h3>
+                                    <ul>
+                                        <li>
+                                            Type of Media: <%= list.data.type %>
+                                        </li>
+                                        <li>
+                                            Number of Episodes: <%= list.data.episodes %>
+                                        </li>
+                                        <li>
+                                            Status: <%= list.data.status %>
+                                        </li>
+                                        <li>
+                                            Rating: <%= list.data.rating %>
+                                        </li>
+                                        <li>
+                                            Studio(s): <%= list.data.studios %>
+                                        </li>
+                                        <li>
+                                            <%= list.data.genres %>
+                                        </li>
+                                    </ul>
+                                    <h3>Synopsis:</h3>
+                                    <p>
+                                        <%= list.data.synopsis %>
+                                    </p>
+                                    <button><a href="/">Refresh</a></button>
+        </main>
         <%- include("partials/footer.ejs") %>

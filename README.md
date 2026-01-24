@@ -1,6 +1,6 @@
 # Anime Newsroom
 
-This website will utilize a public API Jikan API, an unofficial AnimeNewsNetwork REST API to display requested results onto the webpage. This particular API improves upon AnimeNewsNetwork API which makes it easier for users when they want to use the REST API from AnimeNewsNetwork.
+This website will utilize a public API Jikan API, an unofficial MyAnimeList REST API to display requested results onto the webpage. This particular API improves upon MyAnimeList API which makes it easier for users when they want to use the REST API from MyAnimeList.
 
 * Please Note
   You can look at the official GitHub page of Jikan REST API page as well as documentation.
