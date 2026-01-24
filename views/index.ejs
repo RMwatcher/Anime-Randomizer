@@ -3,31 +3,45 @@
     <body>
         <main>
             <h1>Anime Randomizer</h1>
-            <% if (list && list.data && (list.data.url===undefined || list.data.url===null)) { %>
-                <p>No url is available</p>
-                <% } else if (list && list.data && list.data.url) { %>
-                    <p><a href="<%= list.data.url %>" target="_blank" rel="noopener noreferrer">Go to website to learn
-                            more.</a></p>
+            <p>Welcome to the Anime Randomizer where it'll generate a random Anime for your viewing needs. This
+                website will give you general information about the anime it generated from the title to it's rating.
+            </p>
+            <h3>Please Note:</h3>
+            <p>The information displayed here are from <a href="https://myanimelist.net/" target="_blank"
+                    rel="noopener noreferrer">MyAnimeList</a> website. Some anime listed here may have incomplete
+                information which will result in some information being blank. There is also a chance the information
+                posted here could contain <strong>spoilers</strong> so keep that in mind when using this website.</p>
+
+
+            <button><a href="/">Refresh</a></button>
+
+
+
+            <h2>
+                <% if(list.data.title_english===null || list.data.title_english===undefined) { %>
+                    <%= list.data.title %>
+                        <% } else { %>
+                            <%= list.data.title_english %>
+                                <% } %>
+            </h2>
+
+            <h3>
+                <% if(list.data.title_japanese !==undefined && list.data.title_japanese !==null) { %>
+                    <%= list.data.title_japanese %>
+                        <% } %>
+            </h3>
+
+            <% if(list.data.images && list.data.images.jpg && list.data.images.jpg.image_url) { %>
+                <img src="<%= list.data.images.jpg.large_image_url %>" alt="cover for a random anime title">
+                <% } else { %>
+                    <p>No image available</p>
                     <% } %>
 
-                        <h2>
-                            <% if(list.data.title_english===null || list.data.title_english===undefined) { %>
-                                <%= list.data.title %>
-                                    <% } else { %>
-                                        <%= list.data.title_english %>
-                                            <% } %>
-                        </h2>
-
-                        <h3>
-                            <% if(list.data.title_japanese !==undefined && list.data.title_japanese !==null) { %>
-                                <%= list.data.title_japanese %>
-                                    <% } %>
-                        </h3>
-
-                        <% if(list.data.images && list.data.images.jpg && list.data.images.jpg.image_url) { %>
-                            <img src="<%= list.data.images.jpg.image_url %>" alt="cover for a random anime title">
-                            <% } else { %>
-                                <p>No image available</p>
+                        <% if (list && list.data && (list.data.url===undefined || list.data.url===null)) { %>
+                            <p>No url is available</p>
+                            <% } else if (list && list.data && list.data.url) { %>
+                                <p><a href="<%= list.data.url %>" target="_blank" rel="noopener noreferrer">Go to
+                                        website.</a></p>
                                 <% } %>
 
                                     <h3>Information:</h3>
@@ -40,6 +54,9 @@
                                         </li>
                                         <li>
                                             Status: <%= list.data.status %>
+                                        </li>
+                                        <li>
+                                            Date: <%= list.data.aired.string %>
                                         </li>
                                         <li>
                                             Rating: <%= list.data.rating %>
@@ -69,6 +86,6 @@
                                     <p>
                                         <%= list.data.synopsis %>
                                     </p>
-                                    <button><a href="/">Refresh</a></button>
+
         </main>
         <%- include("partials/footer.ejs") %>
