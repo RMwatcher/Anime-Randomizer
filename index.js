@@ -11,15 +11,15 @@ app.use(bodyParser.urlencoded({ extended: true}));
 
 app.get("/", async (req, res) => {
     try {
-        console.log(rating);
         const result = await axios.get(API_URL + "random/anime?sfw=true");
-        console.log(result);
         res.render("index.ejs", {
             list : result.data.data
         });
     } catch (error) {
         console.error("Failed to make request:", error.message);
-        res.status(500);
+        res.render("index.ejs", {
+            error : "It appears you made too many requests too quickly. Please wait a moment."
+        })
     }
 });
 
