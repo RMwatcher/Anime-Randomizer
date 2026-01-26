@@ -12,10 +12,18 @@
                 information which will result in some information being blank. There is also a chance the information
                 posted here could contain <strong>spoilers</strong> so keep that in mind when using this website.</p>
 
-
             <button><a href="/">Refresh</a></button>
 
-
+            <form action="/" class="form" method="post">
+                <select name="rating" id="rating">
+                    <option value="">Choose Rating</option>
+                    <option value="g">G - All Age</option>
+                    <option value="pg">PG - Children</option>
+                    <option value="pg13">PG-13 - Teens 13 & over</option>
+                    <option value="r17">R - 17+ (Violence & Profanity)</option>
+                    <option value="r">R+ - Mild Nudity</option>
+                </select>
+            </form>
 
             <h2>
                 <% if(list.data.title_english===null || list.data.title_english===undefined) { %>
