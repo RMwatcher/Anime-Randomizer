@@ -9,21 +9,8 @@ const API_URL = "https://api.jikan.moe/v4/random/anime?sfw=true";
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true}));
 
-app.get("/", async (req, res) => {
-    try {
-    const result = await axios.get(API_URL);
-    console.log(result);
-    res.render("index.ejs", { 
-        list : result.data.data 
-    });
-
-    } catch (error) {
-        console.error("Failed to make request:", error.message);
-        res.render("index.ejs", {
-            error : "We couldn't process your request at this time. Please try again.",
-        });
-    }
-});
+app.get("/", (req, res) => {
+    res.render("index.ejs");
 
 app.post("/", async (req, res) => {
     try {
