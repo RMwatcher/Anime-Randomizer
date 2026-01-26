@@ -23,6 +23,22 @@ app.get("/", async (req, res) => {
     }
 });
 
+
+app.post("/ratings", async (req, res) => {
+    try {
+        const rating = req.body.rating;
+        const result = await axios.get(API_URL + "random/anime?sfw=true&rating=" + encodeURIComponent(rating));
+        res.render("index.ejs", {
+            list : result.data.data
+        });
+    } catch (error) {
+        console.error("Failed to make request:", error.message);
+        res.render("index.ejs", {
+            error : "It appears you made too many requests too quickly. Please wait a moment."
+        })
+    }
+});
+
 app.listen(port, () => {
     console.log("Server running on port: " + port);
 });

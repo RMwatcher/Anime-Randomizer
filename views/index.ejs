@@ -14,81 +14,96 @@
 
             <button><a href="/">Refresh</a></button>
 
-            <h2>
-                <% if(list.title_english===null || list.title_english===undefined) { %>
-                    <%= list.title %>
-                        <% } else { %>
-                            <%= list.title_english %>
-                                <% } %>
-            </h2>
+            <form action="/ratings" class="form" method="post">
+                <label for="rating">Select a rating:</label>
+                <select name="rating" id="rating">
+                    <option value="">Choose Rating</option>
+                    <option value="G - All Ages">G - All Ages</option>
+                    <option value="PG - Children">PG - Children</option>
+                    <option value="PG-13 - Teens 13 or older">PG-13 - Teens 13 or older</option>
+                    <option value="R - 17+ (violence & profanity)">R - 17+ (Violence & Profanity)</option>
+                    <option value="R+ - Mild Nudity">R+ - Mild Nudity</option>
+                </select>
+                <button type="submit">Generate</button>
+            </form>
 
-            <h3>
-                <% if(list.title_japanese !==undefined && list.title_japanese !==null) { %>
-                    <%= list.title_japanese %>
+            <% if (locals.list) { %>
+                <h2>
+                    <% if(list.title_english===null || list.title_english===undefined) { %>
+                        <%= list.title %>
+                            <% } else { %>
+                                <%= list.title_english %>
+                                    <% } %>
+                </h2>
+
+                <h3>
+                    <% if(list.title_japanese !==undefined && list.title_japanese !==null) { %>
+                        <%= list.title_japanese %>
+                            <% } %>
+                </h3>
+
+                <% if(list.images && list.images.jpg && list.images.jpg.image_url) { %>
+                    <img src="<%= list.images.jpg.large_image_url %>" width="500" alt="cover for a random anime title">
+                    <% } else { %>
+                        <p>No image available</p>
                         <% } %>
-            </h3>
 
-            <% if(list.images && list.images.jpg && list.images.jpg.image_url) { %>
-                <img src="<%= list.images.jpg.large_image_url %>" width="500" alt="cover for a random anime title">
-                <% } else { %>
-                    <p>No image available</p>
-                    <% } %>
+                            <% if (list && (list.url===undefined || list.url===null)) { %>
+                                <p>No url is available</p>
+                                <% } else if (list && list.url) { %>
+                                    <p><a href="<%= list.url %>" target="_blank" rel="noopener noreferrer">Go to
+                                            website.</a></p>
+                                    <% } %>
 
-                        <% if (list && (list.url===undefined || list.url===null)) { %>
-                            <p>No url is available</p>
-                            <% } else if (list && list.url) { %>
-                                <p><a href="<%= list.url %>" target="_blank" rel="noopener noreferrer">Go to
-                                        website.</a></p>
-                                <% } %>
-
-                                    <h3>Information:</h3>
-                                    <ul>
-                                        <li>
-                                            Type of Media: <%= list.type %>
-                                        </li>
-                                        <li>
-                                            Number of Episodes: <%= list.episodes %>
-                                        </li>
-                                        <li>
-                                            Status: <%= list.status %>
-                                        </li>
-                                        <li>
-                                            Date: <%= list.aired.string %>
-                                        </li>
-                                        <li>
-                                            Rating: <%= list.rating %>
-                                        </li>
-                                        <li>
-                                            Studio(s):
-                                            <ul>
-                                                <% list.studios.forEach(studio=> { %>
-                                                    <li>
-                                                        <%= studio.name %>
-                                                    </li>
-                                                    <% }); %>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            Genres:
-                                            <ul>
-                                                <% list.genres.forEach(genre=> { %>
-                                                    <li>
-                                                        <%= genre.name %>
-                                                    </li>
-                                                    <% }); %>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    <h3>Synopsis:</h3>
-                                    <p>
-                                        <%= list.synopsis %>
-                                    </p>
-
-                                    <% if (locals.error) { %>
+                                        <h3>Information:</h3>
+                                        <ul>
+                                            <li>
+                                                Type of Media: <%= list.type %>
+                                            </li>
+                                            <li>
+                                                Number of Episodes: <%= list.episodes %>
+                                            </li>
+                                            <li>
+                                                Status: <%= list.status %>
+                                            </li>
+                                            <li>
+                                                Rating: <%= list.rating %>
+                                            </li>
+                                            <li>
+                                                Studio(s):
+                                                <ul>
+                                                    <% list.studios.forEach(studio=> { %>
+                                                        <li>
+                                                            <%= studio.name %>
+                                                        </li>
+                                                        <% }); %>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                Genres:
+                                                <ul>
+                                                    <% list.genres.forEach(genre=> { %>
+                                                        <li>
+                                                            <%= genre.name %>
+                                                        </li>
+                                                        <% }); %>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <h3>Synopsis:</h3>
                                         <p>
-                                            <%= error %>
+                                            <%= list.synopsis %>
                                         </p>
 
-                                        <% } %>
+                                        <% } else { %>
+                                            <h2>These are not the results you're looking for. Please try again.</h2>
+                                            <% } %>
+
+                                                <% if (locals.error) { %>
+                                                    <p>
+                                                        <%= error %>
+                                                    </p>
+
+                                                    <% } %>
         </main>
         <%- include("partials/footer.ejs") %>
