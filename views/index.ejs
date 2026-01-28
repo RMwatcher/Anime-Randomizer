@@ -1,4 +1,5 @@
 <%- include("partials/header.ejs") %>
+    <!-- For transparency, I wanted to make note that I used AI to help me with troubleshooting with some of the features of this website and had no other influence with creating this site. AI helped with a few lines of code, everything else was by hand. -->
 
     <body>
         <main>
@@ -7,12 +8,11 @@
                 website will give you general information about the anime it generated from the title to it's rating.
             </p>
             <h3>Please Note:</h3>
+            <!-- I used noopener and noreferrer so my JavaScript doesn't interfere with the main website this API is based on -->
             <p>The information displayed here are from <a href="https://myanimelist.net/" target="_blank"
                     rel="noopener noreferrer">MyAnimeList</a> website. Some anime listed here may have incomplete
                 information which will result in some information being blank. There is also a chance the information
                 posted here could contain <strong>spoilers</strong> so keep that in mind when using this website.</p>
-
-            <button><a href="/">Refresh</a></button>
 
             <form action="/ratings" class="form" method="post">
                 <label for="rating">Select a rating:</label>
@@ -29,6 +29,7 @@
 
             <% if (locals.list) { %>
                 <h2>
+                    <!-- With the help of AI, this checks to make sure there is content present on these specific fields, otherwise goes to a alternative that is available -->
                     <% if(list.title_english===null || list.title_english===undefined) { %>
                         <%= list.title %>
                             <% } else { %>
@@ -42,6 +43,7 @@
                             <% } %>
                 </h3>
 
+                <!-- With the help of AI, this checks to make sure there is content present on these specific fields, otherwise goes to a alternative that is available -->
                 <% if(list.images && list.images.jpg && list.images.jpg.image_url) { %>
                     <img src="<%= list.images.jpg.large_image_url %>" width="500" alt="cover for a random anime title">
                     <% } else { %>
@@ -70,8 +72,9 @@
                                                 Rating: <%= list.rating %>
                                             </li>
                                             <li>
-                                                Studio(s):
+                                                Studios:
                                                 <ul>
+                                                    <!-- There's a chance for more than one genre to display, if any -->
                                                     <% list.studios.forEach(studio=> { %>
                                                         <li>
                                                             <%= studio.name %>
@@ -82,6 +85,7 @@
                                             <li>
                                                 Genres:
                                                 <ul>
+                                                    <!-- There's a chance for more than one genre to display, if any -->
                                                     <% list.genres.forEach(genre=> { %>
                                                         <li>
                                                             <%= genre.name %>

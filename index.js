@@ -9,8 +9,10 @@ const API_URL = "https://api.jikan.moe/v4/";
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true}));
 
+// Wanted to generate a random anime when someone enters the website
 app.get("/", async (req, res) => {
     try {
+        // To keep the content 'safe for work' I implemented a parameter from the API itself to only show content with a rating no higher than 17 years of age. No content with a rating of 18+ will be shown here.
         const result = await axios.get(API_URL + "random/anime?sfw=true");
         res.render("index.ejs", {
             list : result.data.data
@@ -23,7 +25,7 @@ app.get("/", async (req, res) => {
     }
 });
 
-
+// This is my attempt to add a filter feature for this project, though it's still a working progress.
 app.post("/ratings", async (req, res) => {
     try {
         const rating = req.body.rating;
