@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    width: clamp(350px, 700px, 850px);
+}
+
+button {
+    margin-right: auto;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 6px;
+    & a {
+        text-decoration: none;
+    }
+}

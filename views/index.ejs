@@ -14,12 +14,13 @@
                 information which will result in some information being blank. There is also a chance the information
                 posted here could contain <strong>spoilers</strong> so keep that in mind when using this website.</p>
 
-            <button><a href="/">Refresh</a></button>
+            <button><a href="/">Generate</a></button>
 
 
             <% if (locals.list) { %>
+                <h2>Titles:</h2>
+                <!-- With the help of AI, this checks to make sure there is content present on these specific fields, otherwise goes to a alternative that is available -->
                 <h2>
-                    <!-- With the help of AI, this checks to make sure there is content present on these specific fields, otherwise goes to a alternative that is available -->
                     <% if(list.title_english===null || list.title_english===undefined) { %>
                         <%= list.title %>
                             <% } else { %>
@@ -52,6 +53,8 @@
                                             <li>
                                                 Type of Media: <%= list.type %>
                                             </li>
+                                            <li>Aired date(s): <%= list.aired.string %>
+                                            </li>
                                             <li>
                                                 Number of Episodes: <%= list.episodes %>
                                             </li>
@@ -60,6 +63,17 @@
                                             </li>
                                             <li>
                                                 Rating: <%= list.rating %>
+                                            </li>
+                                            <li>
+                                                Producers:
+                                                <ul>
+                                                    <!-- There's a chance for more than one genre to display, if any -->
+                                                    <% list.producers.forEach(producer=> { %>
+                                                        <li>
+                                                            <%= producer.name %>
+                                                        </li>
+                                                        <% }); %>
+                                                </ul>
                                             </li>
                                             <li>
                                                 Studios:
