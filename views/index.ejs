@@ -14,18 +14,8 @@
                 information which will result in some information being blank. There is also a chance the information
                 posted here could contain <strong>spoilers</strong> so keep that in mind when using this website.</p>
 
-            <form action="/ratings" class="form" method="post">
-                <label for="rating">Select a rating:</label>
-                <select name="rating" id="rating">
-                    <option value="">Choose Rating</option>
-                    <option value="G - All Ages">G - All Ages</option>
-                    <option value="PG - Children">PG - Children</option>
-                    <option value="PG-13 - Teens 13 or older">PG-13 - Teens 13 or older</option>
-                    <option value="R - 17+ (violence & profanity)">R - 17+ (Violence & Profanity)</option>
-                    <option value="R+ - Mild Nudity">R+ - Mild Nudity</option>
-                </select>
-                <button type="submit">Generate</button>
-            </form>
+            <button><a href="/">Refresh</a></button>
+
 
             <% if (locals.list) { %>
                 <h2>
