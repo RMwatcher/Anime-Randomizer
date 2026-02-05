@@ -3,38 +3,37 @@
 
     <body>
         <main>
-            <h1>Anime Randomizer</h1>
-            <p>Welcome to the Anime Randomizer where it'll generate a random Anime for your viewing needs. This
-                website will give you general information about the anime it generated from the title to it's rating.
-            </p>
-            <h3>Please Note:</h3>
-            <!-- I used noopener and noreferrer so my JavaScript doesn't interfere with the main website this API is based on -->
-            <p>The information displayed here are from <a href="https://myanimelist.net/" target="_blank"
-                    rel="noopener noreferrer">MyAnimeList</a> website. Some anime listed here may have incomplete
-                information which will result in some information being blank. There is also a chance the information
-                posted here could contain <strong>spoilers</strong> so keep that in mind when using this website.</p>
+            <header>
+                <h1>Anime Randomizer</h1>
+                <img src="/images/snap-wander-COG8_eNiEOI-unsplash.jpg"
+                    alt="bicycle sitting on grass overlooking a bridge">
+                <p>Photo by <a
+                        href="https://unsplash.com/@passimage?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Snap
+                        Wander</a> on <a
+                        href="https://unsplash.com/photos/a-bike-with-a-basket-of-flowers-on-the-back-COG8_eNiEOI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+                </p>
 
-            <button><a href="/">Generate</a></button>
+                <p>Welcome to the Anime Randomizer where it'll generate a random Anime for your viewing needs. This
+                    website will give you general information about the anime it generated from the title to it's
+                    rating.
+                </p>
+                <h3>Please Note:</h3>
+                <!-- I used noopener and noreferrer so my JavaScript doesn't interfere with the main website this API is based on -->
+                <p>The information displayed here are from <a href="https://myanimelist.net/" target="_blank"
+                        rel="noopener noreferrer">MyAnimeList</a> website. Some anime listed here may have incomplete
+                    information which will result in some fields being blank. There is also a chance the
+                    information
+                    posted here could contain <strong>spoilers</strong> for that anime so keep that in mind when using
+                    this website.
+                </p>
+                <p>Generate a new title here or go straight to the <a href="#information">information</a> section.</p>
+                <button><a href="/">Generate</a></button>
+            </header>
 
 
             <% if (locals.list) { %>
-                <h2>Titles:</h2>
-                <!-- With the help of AI, this checks to make sure there is content present on these specific fields, otherwise goes to a alternative that is available -->
-                <h2>
-                    <% if(list.title_english===null || list.title_english===undefined) { %>
-                        <%= list.title %>
-                            <% } else { %>
-                                <%= list.title_english %>
-                                    <% } %>
-                </h2>
 
-                <h3>
-                    <% if(list.title_japanese !==undefined && list.title_japanese !==null) { %>
-                        <%= list.title_japanese %>
-                            <% } %>
-                </h3>
-
-                <!-- With the help of AI, this checks to make sure there is content present on these specific fields, otherwise goes to a alternative that is available -->
+                <!-- With the help of AI, this checks to make sure there is content present on these specific fields, otherwise it'll display a message instead -->
                 <% if(list.images && list.images.jpg && list.images.jpg.image_url) { %>
                     <img src="<%= list.images.jpg.large_image_url %>" width="500" alt="cover for a random anime title">
                     <% } else { %>
@@ -44,74 +43,90 @@
                             <% if (list && (list.url===undefined || list.url===null)) { %>
                                 <p>No url is available</p>
                                 <% } else if (list && list.url) { %>
-                                    <p><a href="<%= list.url %>" target="_blank" rel="noopener noreferrer">Go to
-                                            website.</a></p>
+                                    <p><a href="<%= list.url %>" target="_blank" rel="noopener noreferrer">Learn
+                                            more</a></p>
                                     <% } %>
-
-                                        <h3>Information:</h3>
-                                        <ul>
-                                            <li>
-                                                Type of Media: <%= list.type %>
-                                            </li>
-                                            <li>Aired date(s): <%= list.aired.string %>
-                                            </li>
-                                            <li>
-                                                Number of Episodes: <%= list.episodes %>
-                                            </li>
-                                            <li>
-                                                Status: <%= list.status %>
-                                            </li>
-                                            <li>
-                                                Rating: <%= list.rating %>
-                                            </li>
-                                            <li>
-                                                Producers:
-                                                <ul>
-                                                    <!-- There's a chance for more than one genre to display, if any -->
-                                                    <% list.producers.forEach(producer=> { %>
-                                                        <li>
-                                                            <%= producer.name %>
+                                        <section>
+                                            <h3 id="information">Information:</h3>
+                                            <ul>
+                                                <!-- With the help of AI, this checks to make sure there is content present on these specific fields, otherwise goes to a alternative that is available -->
+                                                <% if(list.title_english===null || list.title_english===undefined) { %>
+                                                    <li>Title: <%= list.title %>
+                                                    </li>
+                                                    <% } else { %>
+                                                        <li>Title: <%= list.title_english %>
                                                         </li>
-                                                        <% }); %>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                Studios:
-                                                <ul>
-                                                    <!-- There's a chance for more than one genre to display, if any -->
-                                                    <% list.studios.forEach(studio=> { %>
-                                                        <li>
-                                                            <%= studio.name %>
-                                                        </li>
-                                                        <% }); %>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                Genres:
-                                                <ul>
-                                                    <!-- There's a chance for more than one genre to display, if any -->
-                                                    <% list.genres.forEach(genre=> { %>
-                                                        <li>
-                                                            <%= genre.name %>
-                                                        </li>
-                                                        <% }); %>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                        <h3>Synopsis:</h3>
-                                        <p>
-                                            <%= list.synopsis %>
-                                        </p>
+                                                        <% } %>
+                                                            <% if(list.title_japanese !==undefined &&
+                                                                list.title_japanese !==null) { %>
+                                                                <li>
+                                                                    Japanese Title: <%= list.title_japanese %>
+                                                                </li>
+                                                                <% } %>
+                                                                    <li>
+                                                                        Type of Media: <%= list.type %>
+                                                                    </li>
+                                                                    <li>Aired date(s): <%= list.aired.string %>
+                                                                    </li>
+                                                                    <li>
+                                                                        Number of Episodes: <%= list.episodes %>
+                                                                    </li>
+                                                                    <li>
+                                                                        Status: <%= list.status %>
+                                                                    </li>
+                                                                    <li>
+                                                                        Rating: <%= list.rating %>
+                                                                    </li>
+                                                                    <li>
+                                                                        Producers:
+                                                                        <ul>
+                                                                            <!-- There's a chance for more than one genre to display, if any -->
+                                                                            <% list.producers.forEach(producer=> { %>
+                                                                                <li>
+                                                                                    <%= producer.name %>
+                                                                                </li>
+                                                                                <% }); %>
+                                                                        </ul>
+                                                                    </li>
+                                                                    <li>
+                                                                        Studios:
+                                                                        <ul>
+                                                                            <!-- There's a chance for more than one genre to display, if any -->
+                                                                            <% list.studios.forEach(studio=> { %>
+                                                                                <li>
+                                                                                    <%= studio.name %>
+                                                                                </li>
+                                                                                <% }); %>
+                                                                        </ul>
+                                                                    </li>
+                                                                    <li>
+                                                                        Genres:
+                                                                        <ul>
+                                                                            <!-- There's a chance for more than one genre to display, if any -->
+                                                                            <% list.genres.forEach(genre=> { %>
+                                                                                <li>
+                                                                                    <%= genre.name %>
+                                                                                </li>
+                                                                                <% }); %>
+                                                                        </ul>
+                                                                    </li>
+                                            </ul>
+                                            <h3>Synopsis:</h3>
+                                            <p>
+                                                <%= list.synopsis %>
+                                            </p>
 
-                                        <% } else { %>
-                                            <h2>These are not the results you're looking for. Please try again.</h2>
-                                            <% } %>
+                                            <% } else { %>
+                                                <h2>These are not the results you're looking for. Please try again.</h2>
+                                                <% } %>
 
-                                                <% if (locals.error) { %>
-                                                    <p>
-                                                        <%= error %>
-                                                    </p>
+                                                    <% if (locals.error) { %>
+                                                        <p>
+                                                            <%= error %>
+                                                        </p>
 
-                                                    <% } %>
+                                                        <% } %>
+                                        </section>
         </main>
+
         <%- include("partials/footer.ejs") %>
