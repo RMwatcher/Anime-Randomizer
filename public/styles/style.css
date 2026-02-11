@@ -1,6 +1,6 @@
 :root {
     --text-color: #022236;
-    --background-color: #71f2ff;
+    --background-color: #f7f7f7;
     --section-color: #85fff2;
 }
 * {
@@ -12,6 +12,7 @@ body {
     color: var(--text-color);
     margin: 0;
     padding: 0;
+    line-height: 1.2;
 }
 
 main {
@@ -20,21 +21,34 @@ main {
     align-items: center;
     font-size: 1.1em;
     background-color: var(--background-color);
+    & #cover {
+        /* Added a border to make the image easier to see */
+    border: 1px solid var(--text-color);
+    } & p {
+        max-width: 800px;
+    }
 }
 
 header {    
     text-align: center;
 }
 
-p {
-    width: clamp(350px, 700px, 850px);
-    line-height: 1.2;
-}
+.learn-more {
+    text-align: center;
+} 
 
 section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: var(--section-color);
     padding: 10px 20px;
     border-radius: 10px;
+    margin-bottom: 10px;
+    width: 700px;
+    & p {
+        text-align: center;
+    }
 }
 
 button {
@@ -42,6 +56,7 @@ button {
     cursor: pointer;
     padding: 10px;
     border-radius: 6px;
+    margin-bottom: 10px;
     & a {
         text-decoration: none;
     }
@@ -54,4 +69,21 @@ footer {
     padding: 25px 0;
     background-color: var(--text-color);
     color: whitesmoke;
+}
+
+@media only screen and (width <= 800px) {
+    main {
+        padding: 0 20px;
+    }
+
+    section {
+        width: 100%;
+    }
+    
+}
+
+@media only screen and (width <= 425px) {
+    img {
+        width: 350px;
+    }
 }
