@@ -11,7 +11,7 @@
                     website will give you general information about the anime it generated from the title to it's
                     rating.
                 </p>
-                <h3>Please Note:</h3>
+                <h2>Please Note:</h2>
                 <!-- I used noopener and noreferrer so my JavaScript doesn't interfere with the main website this API is based on -->
                 <p>The information displayed here are from <a href="https://myanimelist.net/" target="_blank"
                         rel="noopener noreferrer">MyAnimeList</a> website. Some anime listed here may have incomplete
@@ -20,7 +20,8 @@
                     posted here could contain <strong>spoilers</strong> for that anime so keep that in mind when using
                     this website.
                 </p>
-                <p>Generate a new title here or go straight to the <a href="#information">information</a> section.</p>
+                <p>Generate a new title here or go straight to the <a href="#information" target="_self">information</a>
+                    section.</p>
                 <button><a href="/">Generate</a></button>
             </header>
 
@@ -41,7 +42,7 @@
                                         more</a></p>
                                 <% } %>
                                     <section>
-                                        <h3>Information:</h3>
+                                        <h3 id="information">Information:</h3>
                                         <ul>
                                             <!-- With the help of AI, this checks to make sure there is content present on these specific fields, otherwise goes to a alternative that is available -->
                                             <% if(list.title_english===null || list.title_english===undefined ||
