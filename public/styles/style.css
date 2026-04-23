@@ -3,6 +3,11 @@
     --background-color: #f7f7f7;
     --section-color: #85fff2;
 }
+
+html {
+    font-size: 18px;
+}
+
 * {
     box-sizing: border-box;
     scroll-behavior: smooth;
@@ -13,13 +18,13 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.2;
+    font-size: 1.25em;
 }
 
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 1.1em;
     background-color: var(--background-color);
     & #cover {
         /* Added a border to make the image easier to see */
