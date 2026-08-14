@@ -20,8 +20,9 @@ app.get("/", async (req, res) => {
     } catch (error) {
         console.error("Failed to make request:", error.message);
         res.render("index.ejs", {
-            error : "It appears you made too many requests too quickly. Please wait a moment."
-        })
+            error : "It appears you made too many requests too quickly. Please wait a moment.",
+            list: {}
+        });
     }
 });
 
